@@ -1,2 +1,4 @@
-I tested only the service layer because the business logic can be found there. If something would go wrong then
-the only place where the problem could be is in the sort() function at service level.
+I tested only the service layer because the controller contains only one service call therefore the business logic
+ can be found there. If something would go wrong then the only place where the problem could be is in the sort()
+  function at service level. There were no other services that I need to know whether they are communicating well
+   with mine.

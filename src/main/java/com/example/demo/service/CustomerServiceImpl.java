@@ -12,25 +12,18 @@ import java.util.stream.Collectors;
 
 @Service
 public class CustomerServiceImpl implements CustomerService{
-
-    private final CustomerDTOToCustomer customerDTOToCustomer = new CustomerDTOToCustomer();
-
-    private final CustomerToCustomerDTO customerToCustomerDTO = new CustomerToCustomerDTO();
-
-    private final LocalDateTime localDateTime = new LocalDateTime();
-
     @Override
     public List<CustomerDTO> sort(CustomerDTO[] customerArray) {
         List<Customer> customerList = Arrays.asList(customerArray)
                 .stream()
-                .map(customerDTO -> customerDTOToCustomer.convert(customerDTO))
+                .map(customerDTO -> new CustomerDTOToCustomer().convert(customerDTO))
                 .collect(Collectors.toList());
 
         Collections.sort(customerList);
 
         List<CustomerDTO> convertedList = customerList
                 .stream()
-                .map(customer -> customerToCustomerDTO.convert(customer))
+                .map(customer -> new CustomerToCustomerDTO().convert(customer))
                 .collect(Collectors.toList());
 
         return convertedList;
